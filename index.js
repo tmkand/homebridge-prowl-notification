@@ -1,5 +1,6 @@
 var https = require('https');
 var querystring = require('querystring');
+var package = require("./package.json");
 var Accessory, Service, Characteristic, UUIDGen;
 
 module.exports = function(homebridge) {
@@ -85,7 +86,7 @@ ProwlNotification.prototype.addAccessory = function(data) {
     // getInitState
     var manufacturer = accessory.context.manufacturer || "Simone Karin Lehmann";
     var model = accessory.context.model || "Prowl Notification Switch";
-    var serial = accessory.context.serial || "1.0.0";
+    var serial = accessory.context.serial || package.version;
     
     // Update HomeKit accessory information
     accessory.getService(Service.AccessoryInformation)
