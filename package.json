@@ -1,11 +1,11 @@
 {
     "name": "homebridge-prowl-notification",
-    "version": "0.5.2",
-    "description": "Switch which triggers a push notification via Prowl https://www.prowlapp.com",
+    "version": "0.5.3",
+    "description": "Switches which trigger push notifications via Prowl https://www.prowlapp.com",
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "uhura.local"
+        "url": "https://github.com/lisanet/homebridge-prowl-notification.git"
     },
     "engines": {
         "node": ">=0.12.0",
@@ -18,6 +18,10 @@
         "notofication",
         "prowl"
     ],
+    "bugs": {
+        "url": "https://github.com/lisanet/homebridge-prowl-notification/issues"
+    },
+    "homepage": "https://github.com/lisanet/homebridge-prowl-notification#readme",
     "author": "Simone Karin Lehmann",
     "license": "MIT"
 }
