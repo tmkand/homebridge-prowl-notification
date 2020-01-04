@@ -1,0 +1,64 @@
+{
+    "pluginAlias": "ProwlNotification",
+    "pluginType": "platform",
+    "singular": true,
+    "headerDisplay": "Homebridge plugin for the Netatmo Weatherstation",
+    "footerDisplay": "For a detailed description, see the [README](https://github.com/skrollme/homebridge-eveatmo#readme) file.",
+    "schema": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "title": "Name",
+                "type": "string",
+                "default": "Prowl",
+                "required": true
+            },
+            "apikey": {
+                "title": "API key",
+                "type": "string",
+                "required": true,
+                "description": "Prowl API key"
+            },
+            "switches": {
+                "title": "Switches",
+                "type": "array",
+                "items": {
+                    "title": "Switch",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "type": "string",
+                            "default": "Default Room",
+                            "required": true
+                        },
+                        "subject": {
+                            "title": "Command for On",
+                            "type": "string",
+                            "default": "Hello",
+                            "required": true
+                        },
+                        "message": {
+                            "title": "Command for Off",
+                            "type": "string",
+                            "default": "just testing",
+                            "required": true
+                        },
+                        "priority": {
+                            "title": "Command for getting the state",
+                            "type": "integer",
+                            "default": 0,
+                            "required": true
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+}
