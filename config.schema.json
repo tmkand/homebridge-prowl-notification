@@ -2,8 +2,8 @@
     "pluginAlias": "ProwlNotification",
     "pluginType": "platform",
     "singular": true,
-    "headerDisplay": "Homebridge plugin for the Netatmo Weatherstation",
-    "footerDisplay": "For a detailed description, see the [README](https://github.com/skrollme/homebridge-eveatmo#readme) file.",
+    "headerDisplay": "Homebridge plugin for [Prowl Notifications](https://www.prowlapp.com)",
+    "footerDisplay": "For a detailed description, see the [README](https://github.com/lisanet/homebridge-prowl-notification#readme) file.",
     "schema": {
         "type": "object",
         "properties": {
@@ -17,7 +17,13 @@
                 "title": "API key",
                 "type": "string",
                 "required": true,
-                "description": "Prowl API key"
+                "description": "Prowl API key. Get one at the https://www.prowlapp.com"
+            },
+            "defaultmsg": {
+                "title": "Default message",
+                "type": "string",
+                "default": "%s has been triggered.",
+                "description": "Default notification text is '%s has been triggered.' %s is replaced with 'Subject' or 'Name of switch'."
             },
             "switches": {
                 "title": "Switches",
@@ -27,38 +33,32 @@
                     "type": "object",
                     "properties": {
                         "name": {
-                            "title": "Name",
+                            "title": "Name of switch",
                             "type": "string",
-                            "default": "Default Room",
                             "required": true
                         },
                         "subject": {
-                            "title": "Command for On",
+                            "title": "Subject",
                             "type": "string",
-                            "default": "Hello",
-                            "required": true
+                            "description": "Subject of the message."
                         },
                         "message": {
-                            "title": "Command for Off",
+                            "title": "Message",
                             "type": "string",
-                            "default": "just testing",
-                            "required": true
+                            "description": "Individual notification text. Overrides the default above."
                         },
                         "priority": {
-                            "title": "Command for getting the state",
+                            "title": "Priority",
                             "type": "integer",
                             "default": 0,
-                            "required": true
+                            "required": true,
+                            "minimum": -2,
+                            "maximum": 2,
+                            "description": "Priority: -2 = lowest, 0 = normal, 2 = highest"
                         }
-                        
-                        
                     }
-                    
                 }
-                
             }
-            
         }
-        
     }
 }
