@@ -1,5 +1,7 @@
 var https = require('https');
 var querystring = require('querystring');
+var fs = require('fs');
+var format = require("util").format;
 var package = require("./package.json");
 var Accessory, Service, Characteristic, UUIDGen;
 
@@ -79,10 +81,8 @@ ProwlNotification.prototype.addAccessory = function(data) {
      */
     
     accessory.context.name = data.name;
-    accessory.context.subject = data.subject;
-    accessory.context.message = data.message;
-    accessory.context.priority = data.priority;
-    
+    accessory.context.priority = (data.priority == undefined) ? 0 : data.priority;
+
     // getInitState
     var manufacturer = accessory.context.manufacturer || "Simone Karin Lehmann";
     var model = accessory.context.model || "Prowl Notification Switch";
@@ -132,14 +132,12 @@ ProwlNotification.prototype.getState = function (thisSwitch, callback) {
 
 ProwlNotification.prototype.setState = function (thisSwitch, state, callback) {
     var self = this;
-    
+
     if (state == true) {
-        
         setTimeout(function () {
-                   self.accessories[thisSwitch.name].getService(Service.Switch)
-                   .setCharacteristic(Characteristic.On, !state);
-                   }, 500);
-        
+            self.accessories[thisSwitch.name].getService(Service.Switch)
+                .setCharacteristic(Characteristic.On, !state);
+        }, 3000);
         this.sendNotification(thisSwitch);
     }
     callback(null);
@@ -147,10 +145,29 @@ ProwlNotification.prototype.setState = function (thisSwitch, state, callback) {
 
 ProwlNotification.prototype.sendNotification = function(thisSwitch) {
     this.log.debug("send notification from " + thisSwitch.name);
-    
+
+    var switches;
+    var defaultMessage;
+    var subject;
+    var message;
+    var globalConfig = JSON.parse(fs.readFileSync(this.api.user.configPath()));
+
+    globalConfig.platforms.forEach(p => {
+        if (p.platform === "ProwlNotification") {
+            defaultMessage = (p.defaultmsg == undefined) ? "% has been triggered." : p.defaultmsg;
+            switches = p.switches;
+        }
+    });
+    switches.forEach(s => {
+        if (s.name === thisSwitch.name) {
+            subject = (s.subject == undefined) ? thisSwitch.name : s.subject;
+            message = (s.message == undefined) ? format(defaultMessage, subject) : s.message;
+        }
+    });
+
     var data = querystring.stringify({ apikey : this.config.apikey,
-                                     application : thisSwitch.subject,
-                                     description : thisSwitch.message,
+                                     application : subject,
+                                     description : message,
                                      priority : thisSwitch.priority
                                      })
     
