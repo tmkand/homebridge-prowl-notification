@@ -1,6 +1,6 @@
 {
     "name": "homebridge-prowl-notification",
-    "version": "0.5.3",
+    "version": "1.0.0",
     "description": "Switches which trigger push notifications via Prowl https://www.prowlapp.com",
     "main": "index.js",
     "repository": {
@@ -8,7 +8,7 @@
         "url": "https://github.com/lisanet/homebridge-prowl-notification.git"
     },
     "engines": {
-        "node": ">=0.12.0",
+        "node": ">=10.0.0",
         "homebridge": ">=0.4.16"
     },
     "keywords": [
