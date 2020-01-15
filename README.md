@@ -32,7 +32,7 @@ For more information about Prowl notifications visit the [Prowl homepage](https:
 
 ```
 This gives you a switch which, when turned on, will trigger a Prowl notification with the 
-subject "Something happend" and the message "bbut everything's still ok."
+subject "Something happend" and the message "but everything's still ok."
 
 ```  "platforms": [
         {
@@ -57,7 +57,7 @@ no 'message' property, the defaultmsg will be used and the '%s' will be replaced
 subject (or name if no subject). The '%s' is only working as a placeholder in 'defaultmsg'.
 In 'message' it will be printed as '%s' and will not be replaced.
 
-## Prerequiremant: A Prowl API key
+## Prerequirement: A Prowl API key
 
 In order to use this plugin you need the Prowl App for iOS and an API key. The iOS App Store
 or the [Prowl homepage](https://www.prowlapp.com) has more inforamtion about the iOS app.
@@ -67,8 +67,8 @@ follow the directions outlined there on the 'API Keys' tab.
 ## Changing notification message
 
 The notification text ('subject' and 'message') is read at runtime directly from homebrigde's
-config.json. This allows you to easily change the notification by simply modifying config.json
-and without the need to restart homebridge.
+config.json. This allows you to easily change the notification by simply modifying config.json,
+without the need to restart homebridge.
 
 If you use the wonderful UI plugin [homebridge-config-ui-x](https://www.npmjs.com/package/homebridge-config-ui-x)
 modifying will be even more easier. Just open the settings dialog of homebridge-prowl-notification
