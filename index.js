@@ -150,7 +150,7 @@ ProwlNotification.prototype.sendNotification = function(thisSwitch) {
     var defaultMessage;
     var subject;
     var message;
-    var url;
+    var urlString;
     var globalConfig = JSON.parse(fs.readFileSync(this.api.user.configPath()));
 
     globalConfig.platforms.forEach(p => {
@@ -170,7 +170,7 @@ ProwlNotification.prototype.sendNotification = function(thisSwitch) {
                                      application : subject,
                                      description : message,
                                      priority : thisSwitch.priority
-                                     url : url
+                                     url : urlString
                                      })
     
     var options = {
