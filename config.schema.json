@@ -47,6 +47,11 @@
                             "type": "string",
                             "description": "Individual notification text. Overrides the default above."
                         },
+                        "url": {
+                            "title": "URL",
+                            "type": "string",
+                            "description": "URL to be called."
+                        },
                         "priority": {
                             "title": "Priority",
                             "type": "integer",
